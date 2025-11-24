@@ -1,0 +1,272 @@
+/* CẤU TRÚC CHUNG */
+body {
+    background-color: #2c3e50; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    height: 100vh;
+    width: 100vw;
+}
+
+.hidden { display: none !important; }
+
+/* --- MÀN HÌNH MENU --- */
+#main-menu {
+    background: url('images/main_bg.jpg') no-repeat center center;
+    background-size: cover; 
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-logo {
+    color: transparent; 
+    font-size: 4em;
+    font-weight: 900;
+    text-shadow: none;
+    margin-bottom: 50px; 
+    height: 0; 
+}
+
+.main-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 250px;
+}
+
+.btn-custom {
+    background: linear-gradient(to bottom, #ffeb3b, #f39c12);
+    border: 4px solid #fff;
+    border-radius: 50px;
+    color: #d35400;
+    font-size: 24px;
+    font-weight: 900;
+    padding: 10px 0;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: transform 0.1s;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.6);
+}
+
+.btn-custom:hover {
+    transform: scale(1.05);
+    background: linear-gradient(to bottom, #fff200, #ffc107);
+}
+
+.btn-continue {
+    background: linear-gradient(to bottom, #2ecc71, #27ae60);
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.settings-btn-container {
+    position: absolute;
+    right: 30px;
+    top: 50%; 
+    transform: translateY(-50%);
+}
+
+.btn-icon-settings {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #bdc3c7, #95a5a6);
+    border: 3px solid white;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-icon-settings:hover { transform: rotate(90deg) translateY(-50%); transition: 0.3s; }
+
+/* --- MÀN HÌNH GAME --- */
+#game-screen {
+    background: url('images/pokemon_bg.jpg') no-repeat center center;
+    background-size: cover; 
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.4);
+    padding: 10px 20px;
+    border-radius: 15px;
+    color: white;
+    width: 90%;
+    max-width: 600px;
+}
+
+.stats-box {
+    display: flex;
+    gap: 30px;
+    font-size: 1.2rem;
+}
+
+.mode-select-bar .selected-mode {
+    background-color: #e74c3c !important;
+    color: white !important;
+    border-color: #c0392b !important;
+}
+
+/* Bàn cờ (Xám mờ) */
+#game-board {
+    position: relative;
+    background-color: rgba(52, 73, 94, 0.7); 
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: content-box;
+    border: 4px solid #7f8c8d;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    margin-top: 10px;
+}
+
+/* Kích thước ô MẶC ĐỊNH (PC/Tablet) */
+.tile {
+    box-sizing: border-box;
+    background-color: transparent; 
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #444;
+    cursor: pointer;
+    display: block;
+}
+.tile-easy, .tile-medium { width: 50px; height: 50px; }
+.tile-hard { width: 35px; height: 35px; }
+
+.tile:hover { opacity: 0.8; border-color: #fff; }
+.tile.selected { border: 3px solid #ffc107; transform: scale(0.92); z-index: 5; box-shadow: 0 0 10px #ffc107;}
+.tile.matched { opacity: 0; pointer-events: none; }
+
+/* Hiệu ứng và đường nối */
+.tile.hint-anim {
+    animation: hintFlash 0.5s infinite alternate;
+    border: 2px solid #00ff00;
+    z-index: 10;
+}
+@keyframes hintFlash { from { filter: brightness(1); } to { filter: brightness(1.5); box-shadow: 0 0 15px #00ff00; } }
+
+.connector {
+    position: absolute;
+    background-color: #00ff00;
+    z-index: 100;
+    box-shadow: 0 0 8px #00ff00;
+    pointer-events: none;
+}
+
+/* --- MODAL CHUNG --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    width: 350px;
+    border: 5px solid #ffc107;
+    box-shadow: 0 0 30px rgba(255, 193, 7, 0.5);
+}
+
+/* ======================================================= */
+/* === ĐIỀU CHỈNH RESPONSIVE CHO MÀN HÌNH DI ĐỘNG (DỌC) === */
+/* ======================================================= */
+@media (max-width: 576px) {
+    /* Giảm kích thước ô gạch cho chế độ Dễ/Thường/Khó */
+    .tile-easy, .tile-medium { 
+        width: 35px; 
+        height: 35px; 
+    }
+    .tile-hard { 
+        width: 25px; 
+        height: 25px; 
+    }
+
+    /* Điều chỉnh font size và padding */
+    .game-header {
+        padding: 8px 15px;
+        width: 95%; 
+    }
+    .stats-box {
+        font-size: 0.9rem;
+        gap: 15px;
+    }
+    
+    /* Điều chỉnh thanh hỗ trợ */
+    .support-bar button {
+        font-size: 0.7rem;
+        padding: 5px 8px;
+    }
+    
+    .modal-box {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+/* ======================================================= */
+/* === ĐIỀU CHỈNH RESPONSIVE CHO MÀN HÌNH DI ĐỘNG (NGANG) === */
+/* ======================================================= */
+@media screen and (orientation: landscape) and (max-width: 820px) {
+    /* Giảm padding trên màn hình ngang để có thêm không gian chiều dọc */
+    #game-screen {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    /* Đảm bảo header và thanh hỗ trợ nhỏ gọn hơn */
+    .game-header {
+        max-width: 95%;
+        padding: 5px 10px;
+    }
+    
+    .stats-box {
+        font-size: 0.8rem;
+        gap: 10px;
+    }
+
+    /* Giảm kích thước ô gạch mạnh hơn trên màn hình ngang */
+    .tile-easy, .tile-medium { 
+        width: 30px; 
+        height: 30px; 
+    }
+    .tile-hard { 
+        width: 20px; 
+        height: 20px; 
+    }
+    
+    /* Giảm kích thước nút hỗ trợ */
+    .support-bar button {
+        font-size: 0.65rem;
+        padding: 4px 6px;
+    }
+
+    /* Giảm kích thước nút chuyển chế độ */
+    .mode-select-bar button {
+        padding: 2px 5px;
+        font-size: 0.7rem;
+    }
+}
