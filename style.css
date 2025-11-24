@@ -269,4 +269,34 @@ body {
         padding: 2px 5px;
         font-size: 0.7rem;
     }
+    /* --- Quy tắc Responsive (Điều chỉnh cho Điện thoại/Máy tính bảng) --- */
+
+@media screen and (max-width: 768px) {
+    /* 1. Đảm bảo bảng game không bị tràn */
+    .game-board-container {
+        width: 90vw; /* Giảm kích thước bảng game xuống 90% chiều rộng màn hình */
+        padding: 5px; /* Giảm khoảng đệm */
+    }
+
+    /* 2. Thu nhỏ các ô Pokemon */
+    .tile {
+        width: 8vw; /* Thu nhỏ chiều rộng của mỗi ô */
+        height: 8vw; /* Thu nhỏ chiều cao của mỗi ô để giữ tỷ lệ */
+        margin: 1px; /* Giảm khoảng cách giữa các ô */
+    }
+
+    /* 3. Thu nhỏ chữ trong nút và thông báo */
+    .status-bar, .controls {
+        font-size: 0.8em; /* Giảm kích thước chữ */
+        padding: 8px;
+    }
+
+    /* 4. Điều chỉnh độ rộng cho màn hình ngang nhỏ (Landscape) */
+    @media screen and (orientation: landscape) and (max-width: 768px) {
+        .game-board-container {
+            width: 70vh; /* Sử dụng chiều cao (vh) để bảng game vừa với màn hình ngang */
+            height: auto;
+        }
+    }
+}
 }
