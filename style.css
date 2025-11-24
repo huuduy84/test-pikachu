@@ -4,7 +4,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    overflow: hidden; 
+    /* Chỉ ẩn thanh cuộn ngang nếu bị tràn */
     height: 100vh;
     width: 100vw;
 }
@@ -192,111 +192,122 @@ body {
 }
 
 /* ======================================================= */
-/* === ĐIỀU CHỈNH RESPONSIVE CHO MÀN HÌNH DI ĐỘNG (DỌC) === */
+/* === ĐIỀU CHỈNH RESPONSIVE CHO MỌI THIẾT BỊ DI ĐỘNG === */
 /* ======================================================= */
-@media (max-width: 576px) {
-    /* Giảm kích thước ô gạch cho chế độ Dễ/Thường/Khó */
-    .tile-easy, .tile-medium { 
-        width: 35px; 
-        height: 35px; 
-    }
-    .tile-hard { 
-        width: 25px; 
-        height: 25px; 
-    }
-
-    /* Điều chỉnh font size và padding */
-    .game-header {
-        padding: 8px 15px;
-        width: 95%; 
-    }
-    .stats-box {
-        font-size: 0.9rem;
-        gap: 15px;
-    }
+/* ======================================================= */
+/* === ĐIỀU CHỈNH RESPONSIVE CUỐI CÙNG (Fix Lỗi Cắt Ô) === */
+/* ======================================================= */
+@media (max-width: 768px) {
     
-    /* Điều chỉnh thanh hỗ trợ */
-    .support-bar button {
-        font-size: 0.7rem;
-        padding: 5px 8px;
-    }
-    
-    .modal-box {
-        width: 90%;
-        padding: 20px;
-    }
-}
-
-/* ======================================================= */
-/* === ĐIỀU CHỈNH RESPONSIVE CHO MÀN HÌNH DI ĐỘNG (NGANG) === */
-/* ======================================================= */
-@media screen and (orientation: landscape) and (max-width: 820px) {
-    /* Giảm padding trên màn hình ngang để có thêm không gian chiều dọc */
-    #game-screen {
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-
-    /* Đảm bảo header và thanh hỗ trợ nhỏ gọn hơn */
+    /* Cấu hình chung cho Menu/Thanh Trạng thái */
     .game-header {
-        max-width: 95%;
         padding: 5px 10px;
+        width: 95%; 
+        max-width: none;
     }
-    
     .stats-box {
-        font-size: 0.8rem;
-        gap: 10px;
+        font-size: 0.7rem;
+        gap: 8px;
     }
-
-    /* Giảm kích thước ô gạch mạnh hơn trên màn hình ngang */
-    .tile-easy, .tile-medium { 
-        width: 30px; 
-        height: 30px; 
-    }
-    .tile-hard { 
-        width: 20px; 
-        height: 20px; 
-    }
-    
-    /* Giảm kích thước nút hỗ trợ */
-    .support-bar button {
+    .support-bar button, .mode-select-bar button {
         font-size: 0.65rem;
         padding: 4px 6px;
     }
 
-    /* Giảm kích thước nút chuyển chế độ */
-    .mode-select-bar button {
-        padding: 2px 5px;
-        font-size: 0.7rem;
+    /* Kích thước ô gạch cho chế độ DỌC (Dùng vw) */
+    .tile-easy, .tile-medium { 
+        width: 6vw; 
+        height: 6vw; 
+        margin: 0.5px;
     }
-    /* --- Quy tắc Responsive (Điều chỉnh cho Điện thoại/Máy tính bảng) --- */
-
-@media screen and (max-width: 768px) {
-    /* 1. Đảm bảo bảng game không bị tràn */
-    .game-board-container {
-        width: 90vw; /* Giảm kích thước bảng game xuống 90% chiều rộng màn hình */
-        padding: 5px; /* Giảm khoảng đệm */
+    .tile-hard { 
+        width: 4.5vw; 
+        height: 4.5vw; 
+        margin: 0.5px;
     }
+    
+    /* --- Điều chỉnh ĐẶC BIỆT cho MÀN HÌNH NGANG (Landscape) --- */
+    @media screen and (orientation: landscape) {
 
-    /* 2. Thu nhỏ các ô Pokemon */
-    .tile {
-        width: 8vw; /* Thu nhỏ chiều rộng của mỗi ô */
-        height: 8vw; /* Thu nhỏ chiều cao của mỗi ô để giữ tỷ lệ */
-        margin: 1px; /* Giảm khoảng cách giữa các ô */
-    }
+        /* Thu nhỏ font chữ hơn nữa cho Màn hình ngang */
+        .stats-box {
+            font-size: 0.55rem;
+            gap: 5px;
+        }
+        .support-bar button, .mode-select-bar button {
+            font-size: 0.5rem;
+            padding: 2px 4px;
+        }
 
-    /* 3. Thu nhỏ chữ trong nút và thông báo */
-    .status-bar, .controls {
-        font-size: 0.8em; /* Giảm kích thước chữ */
-        padding: 8px;
-    }
-
-    /* 4. Điều chỉnh độ rộng cho màn hình ngang nhỏ (Landscape) */
-    @media screen and (orientation: landscape) and (max-width: 768px) {
-        .game-board-container {
-            width: 70vh; /* Sử dụng chiều cao (vh) để bảng game vừa với màn hình ngang */
-            height: auto;
+        /* Giảm kích thước ô gạch dựa trên CHIỀU CAO (vh) để fix lỗi tràn ngang */
+        .tile-easy, .tile-medium { 
+            width: 4.2vh; 
+            height: 4.2vh; 
+            margin: 0.5px;
+        }
+        .tile-hard { 
+            width: 3vh; 
+            height: 3vh; 
+            margin: 0.5px;
         }
     }
 }
+    /* Thu nhỏ kích thước ô gạch để hiển thị tốt trên màn hình dọc nhỏ (Portrait) */
+    .tile-easy, .tile-medium { 
+        width: 6vw; 
+        height: 6vw; 
+        margin: 0.5px;
+    }
+    .tile-hard { 
+        width: 4.5vw; 
+        height: 4.5vw; 
+        margin: 0.5px;
+    }
+    
+    .modal-box {
+        width: 90%;
+        padding: 15px;
+    }
+
+
+    /* --- Điều chỉnh ĐẶC BIỆT cho MÀN HÌNH NGANG (Landscape) --- */
+    @media screen and (orientation: landscape) {
+        
+        /* Giảm padding trên màn hình ngang để có thêm không gian chiều dọc */
+        #game-screen {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            height: 100%;
+        }
+
+        /* Tối ưu hóa cho chiều cao màn hình ngang */
+        #game-board {
+            margin-top: 5px;
+        }
+
+        /* Thu nhỏ font chữ mạnh hơn cho Menu/Status Bar */
+        .game-header {
+            font-size: 0.8rem;
+        }
+        .stats-box {
+            font-size: 0.6rem;
+            gap: 5px;
+        }
+        .support-bar button, .mode-select-bar button {
+            font-size: 0.55rem;
+            padding: 2px 4px;
+        }
+
+        /* Giảm kích thước ô gạch dựa trên CHIỀU CAO (vh) */
+        .tile-easy, .tile-medium { 
+            width: 4.5vh; 
+            height: 4.5vh; 
+            margin: 0.5px;
+        }
+        .tile-hard { 
+            width: 3vh; 
+            height: 3vh; 
+            margin: 0.5px;
+        }
+    }
 }
