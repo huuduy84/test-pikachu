@@ -4,7 +4,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Chỉ ẩn thanh cuộn ngang nếu bị tràn */
+    /* Chỉ ẩn thanh cuộn ngang nếu bị tràn */
     height: 100vh;
     width: 100vw;
 }
@@ -194,26 +194,64 @@ body {
 /* ======================================================= */
 /* === ĐIỀU CHỈNH RESPONSIVE CHO MỌI THIẾT BỊ DI ĐỘNG === */
 /* ======================================================= */
+/* ======================================================= */
+/* === ĐIỀU CHỈNH RESPONSIVE CUỐI CÙNG (Fix Lỗi Cắt Ô) === */
+/* ======================================================= */
 @media (max-width: 768px) {
-    /* --- Cài đặt chung cho Điện thoại (Cả dọc và ngang) --- */
     
-    /* Thu nhỏ font chữ và khoảng đệm chung */
+    /* Cấu hình chung cho Menu/Thanh Trạng thái */
     .game-header {
         padding: 5px 10px;
         width: 95%; 
-        max-width: none; /* Bỏ giới hạn max-width 600px */
+        max-width: none;
     }
-    
-    /* Thu nhỏ chữ và các nút trong thanh trạng thái */
     .stats-box {
         font-size: 0.7rem;
-        gap: 10px;
+        gap: 8px;
     }
     .support-bar button, .mode-select-bar button {
         font-size: 0.65rem;
         padding: 4px 6px;
     }
 
+    /* Kích thước ô gạch cho chế độ DỌC (Dùng vw) */
+    .tile-easy, .tile-medium { 
+        width: 6vw; 
+        height: 6vw; 
+        margin: 0.5px;
+    }
+    .tile-hard { 
+        width: 4.5vw; 
+        height: 4.5vw; 
+        margin: 0.5px;
+    }
+    
+    /* --- Điều chỉnh ĐẶC BIỆT cho MÀN HÌNH NGANG (Landscape) --- */
+    @media screen and (orientation: landscape) {
+
+        /* Thu nhỏ font chữ hơn nữa cho Màn hình ngang */
+        .stats-box {
+            font-size: 0.55rem;
+            gap: 5px;
+        }
+        .support-bar button, .mode-select-bar button {
+            font-size: 0.5rem;
+            padding: 2px 4px;
+        }
+
+        /* Giảm kích thước ô gạch dựa trên CHIỀU CAO (vh) để fix lỗi tràn ngang */
+        .tile-easy, .tile-medium { 
+            width: 4.2vh; 
+            height: 4.2vh; 
+            margin: 0.5px;
+        }
+        .tile-hard { 
+            width: 3vh; 
+            height: 3vh; 
+            margin: 0.5px;
+        }
+    }
+}
     /* Thu nhỏ kích thước ô gạch để hiển thị tốt trên màn hình dọc nhỏ (Portrait) */
     .tile-easy, .tile-medium { 
         width: 6vw; 
