@@ -2,7 +2,7 @@ $(document).ready(function() {
     // ==========================================
     // 1. CẤU HÌNH TRÒ CHƠI
     // ==========================================
-    const IMAGE_EXTENSION = 'JPG'; 
+    const IMAGE_EXTENSION = 'jpg'; 
     const SAVE_KEY = 'pikachuGameSave'; 
     const SETTINGS_KEY = 'pikachuSettings';
     
